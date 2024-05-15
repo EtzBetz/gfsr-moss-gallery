@@ -1,12 +1,12 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0);
-  const doubleCount = computed(() => count.value * 2);
-  function increment() {
-    count.value++;
-  }
+export const useGalleryStore = defineStore('counter', () => {
+  // const count = ref(0);
+  // const doubleCount = computed(() => count.value * 2);
+  // function increment() {
+  //   count.value++;
+  // }
 
   const person_indexes = ref([0, 0, 0, 0, 0]);
 
@@ -31,10 +31,6 @@ export const useCounterStore = defineStore('counter', () => {
   }
 
   return {
-    count,
-    doubleCount,
-    increment,
-
     person_indexes,
     opened_index,
 
