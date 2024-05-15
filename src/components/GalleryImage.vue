@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { computed, ref } from 'vue';
+  import { computed, ref, watch } from 'vue';
 
   const props = defineProps<{
     width: number;
@@ -15,20 +15,7 @@
   }>();
 
   const maximized = ref(false);
-
-  const x_index = computed(() => {
-    return Math.floor((props.index - 1) / props.y_size);
-  });
-  const y_index = computed(() => {
-    return (props.index - 1) % props.y_size;
-  });
-  const x_margin_diff = computed(() => {
-    return props.x_size * props.margin;
-  });
-  const y_margin_diff = computed(() => {
-    return props.y_size * props.margin;
-  });
-
+  const isOnTop = ref(false);
   const person_data = ref([
     {
       name: 'Jane Goodall',
@@ -72,6 +59,29 @@
     },
   ]);
 
+  const x_index = computed(() => {
+    return Math.floor((props.index - 1) / props.y_size);
+  });
+  const y_index = computed(() => {
+    return (props.index - 1) % props.y_size;
+  });
+  const x_margin_diff = computed(() => {
+    return props.x_size * props.margin;
+  });
+  const y_margin_diff = computed(() => {
+    return props.y_size * props.margin;
+  });
+
+  watch(
+    () => props.index,
+    (newValue, oldValue) => {
+      isOnTop.value = true;
+      setTimeout(() => {
+        isOnTop.value = false;
+      }, 1000);
+    },
+  );
+
   function clickHandler(event: any) {
     if (props.src === 'moss') return;
     maximized.value = true;
@@ -109,10 +119,10 @@
         minWidth: 'calc((' + width + 'vw / ' + x_size + ') - 2 * ' + margin + 'px)',
       }"
       :class="{
-        image: true,
         'image--hidden': !shown,
         'image--x_mirror': x_mirror,
         'image--y_mirror': y_mirror,
+        'image--onTop': isOnTop,
       }"
     />
     <div
@@ -167,6 +177,10 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+
+    &.image--onTop {
+      z-index: 100;
+    }
 
     &.image--hidden {
       opacity: 0;
