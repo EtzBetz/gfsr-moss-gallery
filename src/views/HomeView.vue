@@ -5,24 +5,24 @@
 
   const store = useGalleryStore();
 
-  store.shuffle_indexes();
+  store.shuffleIndexes();
 
-  const shuffle_handler = ref(getShuffleInterval());
-  const inactivity_handler = ref(getInactivityInterval());
+  const shuffleHandler = ref(getShuffleInterval());
+  const inactivityHandler = ref(getInactivityInterval());
 
   const isCursorActive = ref(false);
 
   function mouseMoveHandler() {
     isCursorActive.value = true;
-    clearInterval(shuffle_handler.value);
-    clearInterval(inactivity_handler.value);
-    shuffle_handler.value = getShuffleInterval();
-    inactivity_handler.value = getInactivityInterval();
+    clearInterval(shuffleHandler.value);
+    clearInterval(inactivityHandler.value);
+    shuffleHandler.value = getShuffleInterval();
+    inactivityHandler.value = getInactivityInterval();
   }
 
   function getShuffleInterval() {
     return setInterval(() => {
-      store.shuffle_indexes();
+      store.shuffleIndexes();
     }, 15000);
   }
 

@@ -3,20 +3,20 @@
 
   const props = defineProps<{
     width: number;
-    x_size: number;
-    y_size: number;
+    xSize: number;
+    ySize: number;
     index: number;
     person: number;
     src: string;
     margin: number;
     shown: boolean;
-    x_mirror: boolean;
-    y_mirror: boolean;
+    xMirror: boolean;
+    yMirror: boolean;
   }>();
 
   const maximized = ref(false);
   const isOnTop = ref(false);
-  const person_data = ref([
+  const personData = ref([
     {
       name: 'Jane Goodall',
       birth: 1934,
@@ -59,17 +59,17 @@
     },
   ]);
 
-  const x_index = computed(() => {
-    return Math.floor((props.index - 1) / props.y_size);
+  const xIndex = computed(() => {
+    return Math.floor((props.index - 1) / props.ySize);
   });
-  const y_index = computed(() => {
-    return (props.index - 1) % props.y_size;
+  const yIndex = computed(() => {
+    return (props.index - 1) % props.ySize;
   });
-  const x_margin_diff = computed(() => {
-    return props.x_size * props.margin;
+  const xMarginDiff = computed(() => {
+    return props.xSize * props.margin;
   });
-  const y_margin_diff = computed(() => {
-    return props.y_size * props.margin;
+  const yMarginDiff = computed(() => {
+    return props.ySize * props.margin;
   });
 
   watch(
@@ -92,19 +92,18 @@
   <div
     class="image-container"
     :style="{
-      top:
-        'calc(((100vh - ' + y_margin_diff + 'px) / ' + y_size + ') * ' + y_index + ' + (' + y_index * margin + 'px))',
+      top: 'calc(((100vh - ' + yMarginDiff + 'px) / ' + ySize + ') * ' + yIndex + ' + (' + yIndex * margin + 'px))',
       left:
         'calc(((' +
         width +
         'vw - ' +
-        x_margin_diff +
+        xMarginDiff +
         'px) / ' +
-        x_size +
+        xSize +
         ') * ' +
-        x_index +
+        xIndex +
         ' + (' +
-        (x_index + 1) * margin +
+        (xIndex + 1) * margin +
         'px))',
     }"
   >
@@ -113,15 +112,15 @@
       class="image"
       :src="`/src/assets/${src}.png`"
       :style="{
-        maxHeight: 'calc((100vh / ' + y_size + ') - 2 * ' + margin + 'px)',
-        minHeight: 'calc((100vh / ' + y_size + ') - 2 * ' + margin + 'px)',
-        maxWidth: 'calc((' + width + 'vw / ' + x_size + ') - 2 * ' + margin + 'px)',
-        minWidth: 'calc((' + width + 'vw / ' + x_size + ') - 2 * ' + margin + 'px)',
+        maxHeight: 'calc((100vh / ' + ySize + ') - 2 * ' + margin + 'px)',
+        minHeight: 'calc((100vh / ' + ySize + ') - 2 * ' + margin + 'px)',
+        maxWidth: 'calc((' + width + 'vw / ' + xSize + ') - 2 * ' + margin + 'px)',
+        minWidth: 'calc((' + width + 'vw / ' + xSize + ') - 2 * ' + margin + 'px)',
       }"
       :class="{
         'image--hidden': !shown,
-        'image--x_mirror': x_mirror,
-        'image--y_mirror': y_mirror,
+        'image--x_mirror': xMirror,
+        'image--y_mirror': yMirror,
         'image--onTop': isOnTop,
       }"
     />
@@ -134,24 +133,24 @@
     >
       <!--   {{ props.person }}   -->
       <p class="image-info__name">
-        <span>{{ person_data[props.person].name }}</span>
+        <span>{{ personData[props.person].name }}</span>
       </p>
       <p class="image-info__dates">
-        <span class="image-info__dates__birth">{{ person_data[props.person].birth }}</span
+        <span class="image-info__dates__birth">{{ personData[props.person].birth }}</span
         ><span
           class="image-info__dates__death"
-          v-if="person_data[props.person].death !== -1"
-          >{{ person_data[props.person].death }}</span
+          v-if="personData[props.person].death !== -1"
+          >{{ personData[props.person].death }}</span
         >
       </p>
       <p class="image-info__department">
-        <span>{{ person_data[props.person].department }}</span>
+        <span>{{ personData[props.person].department }}</span>
       </p>
       <p class="image-info__skill">
-        <span>{{ person_data[props.person].skill }}</span>
+        <span>{{ personData[props.person].skill }}</span>
       </p>
       <p class="image-info__info">
-        <span>{{ person_data[props.person].info }}</span>
+        <span>{{ personData[props.person].info }}</span>
       </p>
     </div>
   </div>

@@ -11,9 +11,9 @@
 
   const store = useGalleryStore();
 
-  const page_width = ref(60);
-  const x_size = ref(4);
-  const y_size = ref(3);
+  const pageWidth = ref(60);
+  const xSize = ref(4);
+  const ySize = ref(3);
   const margin = ref(10);
 </script>
 
@@ -21,88 +21,88 @@
   <div
     class="grid"
     :style="{
-      minWidth: '' + page_width + 'vw',
-      maxWidth: '' + page_width + 'vw',
+      minWidth: '' + pageWidth + 'vw',
+      maxWidth: '' + pageWidth + 'vw',
     }"
   >
     <gallery-image
-      v-for="i in x_size * y_size"
+      v-for="i in xSize * ySize"
       :key="i"
       :person="-1"
       :index="i"
-      :width="page_width"
-      :x_size="x_size"
-      :y_size="y_size"
+      :width="pageWidth"
+      :xSize="xSize"
+      :ySize="ySize"
       :src="'moss'"
       :margin="margin"
-      :shown="!store.person_indexes.includes(i)"
-      :x_mirror="i % 3 === 1"
-      :y_mirror="i % 2 === 1"
+      :shown="!store.personIndexes.includes(i)"
+      :xMirror="i % 3 === 1"
+      :yMirror="i % 2 === 1"
     />
     <gallery-image
       :key="0"
       :person="0"
-      :index="store.person_indexes[0]"
-      :width="page_width"
-      :x_size="x_size"
-      :y_size="y_size"
+      :index="store.personIndexes[0]"
+      :width="pageWidth"
+      :xSize="xSize"
+      :ySize="ySize"
       :src="'Jane Goodall'"
       :margin="margin"
       :shown="true"
-      :x_mirror="false"
-      :y_mirror="false"
+      :xMirror="false"
+      :yMirror="false"
     />
     <gallery-image
       :key="1"
       :person="1"
-      :index="store.person_indexes[1]"
-      :width="page_width"
-      :x_size="x_size"
-      :y_size="y_size"
+      :index="store.personIndexes[1]"
+      :width="pageWidth"
+      :xSize="xSize"
+      :ySize="ySize"
       :src="'Lise Meitner'"
       :margin="margin"
       :shown="true"
-      :x_mirror="false"
-      :y_mirror="false"
+      :xMirror="false"
+      :yMirror="false"
     />
     <gallery-image
       :key="2"
       :person="2"
-      :index="store.person_indexes[2]"
-      :width="page_width"
-      :x_size="x_size"
-      :y_size="y_size"
+      :index="store.personIndexes[2]"
+      :width="pageWidth"
+      :xSize="xSize"
+      :ySize="ySize"
       :src="'Marie Curie'"
       :margin="margin"
       :shown="true"
-      :x_mirror="false"
-      :y_mirror="false"
+      :xMirror="false"
+      :yMirror="false"
     />
     <gallery-image
       :key="3"
       :person="3"
-      :index="store.person_indexes[3]"
-      :width="page_width"
-      :x_size="x_size"
-      :y_size="y_size"
+      :index="store.personIndexes[3]"
+      :width="pageWidth"
+      :xSize="xSize"
+      :ySize="ySize"
       :src="'Rosalind Franklin'"
       :margin="margin"
       :shown="true"
-      :x_mirror="false"
-      :y_mirror="false"
+      :xMirror="false"
+      :yMirror="false"
     />
     <gallery-image
       :key="4"
       :person="4"
-      :index="store.person_indexes[4]"
-      :width="page_width"
-      :x_size="x_size"
-      :y_size="y_size"
+      :index="store.personIndexes[4]"
+      :width="pageWidth"
+      :xSize="xSize"
+      :ySize="ySize"
       :src="'Vera Rubin'"
       :margin="margin"
       :shown="true"
-      :x_mirror="false"
-      :y_mirror="false"
+      :xMirror="false"
+      :yMirror="false"
     />
   </div>
 </template>

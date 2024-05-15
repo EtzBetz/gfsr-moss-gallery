@@ -8,32 +8,32 @@ export const useGalleryStore = defineStore('counter', () => {
   //   count.value++;
   // }
 
-  const person_indexes = ref([0, 0, 0, 0, 0]);
+  const personIndexes = ref([0, 0, 0, 0, 0]);
 
-  const opened_index = ref(null);
+  const openedIndex = ref(null);
 
-  function shuffle_indexes() {
+  function shuffleIndexes() {
     const indexes = 3 * 4;
     const positions: Array<number> = [];
     for (let i = 1; i <= indexes; i++) {
-      if (person_indexes.value.includes(i)) continue;
+      if (personIndexes.value.includes(i)) continue;
       positions.push(i);
     }
-    for (let i = 0; i < person_indexes.value.length; i++) {
+    for (let i = 0; i < personIndexes.value.length; i++) {
       setTimeout(() => {
         const index = Math.floor(Math.random() * positions.length);
-        const previous_index = person_indexes.value[i];
-        person_indexes.value[i] = positions[index];
+        const previousIndex = personIndexes.value[i];
+        personIndexes.value[i] = positions[index];
         positions.splice(index, 1);
-        positions.push(previous_index);
+        positions.push(previousIndex);
       }, 1000 * i);
     }
   }
 
   return {
-    person_indexes,
-    opened_index,
+    personIndexes: personIndexes,
+    openedIndex: openedIndex,
 
-    shuffle_indexes,
+    shuffleIndexes: shuffleIndexes,
   };
 });
