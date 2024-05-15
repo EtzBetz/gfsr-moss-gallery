@@ -11,48 +11,18 @@
 
   const store = useGalleryStore();
 
-  store.shuffle_indexes();
-
-  const shuffle_handler = ref(getShuffleInterval());
-  const inactivity_handler = ref(getInactivityInterval());
   const page_width = ref(60);
   const x_size = ref(4);
   const y_size = ref(3);
   const margin = ref(10);
-
-  const isCursorActive = ref(false);
-
-  function mouseMoveHandler() {
-    isCursorActive.value = true;
-    clearInterval(shuffle_handler.value);
-    clearInterval(inactivity_handler.value);
-    shuffle_handler.value = getShuffleInterval();
-    inactivity_handler.value = getInactivityInterval();
-  }
-
-  function getShuffleInterval() {
-    return setInterval(() => {
-      store.shuffle_indexes();
-    }, 15000);
-  }
-
-  function getInactivityInterval() {
-    return setInterval(() => {
-      isCursorActive.value = false;
-    }, 5000);
-  }
 </script>
 
 <template>
   <div
-    @mousemove="mouseMoveHandler()"
     class="grid"
     :style="{
       minWidth: '' + page_width + 'vw',
       maxWidth: '' + page_width + 'vw',
-    }"
-    :class="{
-      'grid--cursor-active': isCursorActive,
     }"
   >
     <gallery-image
@@ -137,15 +107,6 @@
   </div>
 </template>
 
-<style lang="scss">
-  .grid--cursor-active .image:hover:has(~ .image-info) {
-    transform: scale(1.1);
-    ~ .image-info {
-      opacity: 1;
-    }
-  }
-</style>
-
 <style scoped lang="scss">
   .grid {
     min-height: 100vh;
@@ -153,14 +114,5 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-
-    &:not(.grid--cursor-active) {
-      cursor: none;
-    }
-
-    &:not(.grid--cursor-active) * {
-      cursor: none;
-      pointer-events: none;
-    }
   }
 </style>
