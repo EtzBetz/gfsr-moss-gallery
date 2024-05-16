@@ -23,13 +23,13 @@
   function getShuffleInterval() {
     return setInterval(() => {
       store.shuffleIndexes();
-    }, 15000);
+    }, 60000);
   }
 
   function getInactivityInterval() {
     return setInterval(() => {
       isCursorActive.value = false;
-    }, 5000);
+    }, 15000);
   }
 </script>
 

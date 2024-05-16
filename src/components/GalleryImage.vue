@@ -203,7 +203,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    translate: 220px 34px;
+    translate: 282px 25px;
     min-height: 292px;
     max-height: 292px;
     min-width: 480px;
@@ -218,7 +218,7 @@
 
     &.image-info--left {
       //text-align: right;
-      translate: -100% 34px;
+      translate: -422px 25px;
       background: linear-gradient(-90deg, rgba(#ffffff, 100%) 0%, rgba(#ffffff, 80%) 80%, rgba(#ffffff, 50%) 100%);
 
       align-items: flex-end;

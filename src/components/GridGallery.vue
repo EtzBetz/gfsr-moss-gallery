@@ -11,7 +11,7 @@
 
   const store = useGalleryStore();
 
-  const pageWidth = ref(60);
+  const pageWidth = ref(75);
   const xSize = ref(4);
   const ySize = ref(3);
   const margin = ref(10);
